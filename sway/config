@@ -24,16 +24,10 @@ input * {
   xkb_layout "gb"
 }
 
-output * bg /home/keith/desktop/wallhaven-711456.png fill
+output * bg /home/keith/wallpaper.img fill
 
 output HDMI-A-1 resolution 1920x1080 position 0,0
 output eDP-1 resolution 1366x768 position 0,1080
-
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
 #
@@ -49,24 +43,7 @@ output eDP-1 resolution 1366x768 position 0,1080
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
-### Key bindings
-#
-# Basics:
-#
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -75,6 +52,8 @@ output eDP-1 resolution 1366x768 position 0,1080
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    bindsym $mod+o exec 'echo -e "Music\nDevelopment\nBrowser" | bemenu'
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -91,43 +70,33 @@ output eDP-1 resolution 1366x768 position 0,1080
 #
 # Moving around:
 #
-    # Move your focus around
-    #bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    #bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
+    # Toggle between windows in workspace
+    bindsym $mod+p focus next
+
+    # Move the focused window
     bindsym $mod+Shift+$left move left
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+
 #
 # Workspaces:
 #
 
-    workspace 1:Music output $monitor_top
-    workspace 2:Devel output $monitor_top
+    workspace 1:music output $monitor_top
+    workspace 2:devel output $monitor_top
+    workspace 3:config output $monitor_top
 
-    workspace 6:Browser output $monitor_bottom
+    workspace 6:browser output $monitor_bottom
 
     # Switch to workspace
-    bindsym $mod+1 workspace 1:Devel 
-    bindsym $mod+2 workspace 2:Music 
-    bindsym $mod+3 workspace 3: 
+    bindsym $mod+1 workspace 1:music 
+    bindsym $mod+2 workspace 2:devel 
+    bindsym $mod+3 workspace 3:config 
     bindsym $mod+4 workspace 4:
     bindsym $mod+5 workspace 5:
-    bindsym $mod+6 workspace 6:Browser
+    bindsym $mod+6 workspace 6:browser
     bindsym $mod+7 workspace 7:
     bindsym $mod+8 workspace 8:
     bindsym $mod+9 workspace 9:
@@ -135,7 +104,12 @@ output eDP-1 resolution 1366x768 position 0,1080
     bindsym $mod+$right workspace next
     bindsym $mod+$left workspace prev
 
-    exec --no-startup-id sway-msg 'workspace 3:Browser; exec epiphany'
+    # Startup layout
+    exec swaymsg 'workspace 1:music; exec "alacritty -e /bin/cmus"'
+    exec swaymsg 'workspace 2:devel; exec "alacritty"'
+    exec swaymsg 'workspace 3:config; exec "alacritty -e nvim /home/keith/.config/sway/config"'
+
+    exec swaymsg 'workspace 6:browser; exec epiphany'
 
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace 1

@@ -2,27 +2,42 @@
 
 :inoremap jk <ESC>
 
+" Useful default keybindings
+
+" bd - close current buffer
+
 nnoremap <silent> <C-o> :NERDTreeToggle . <CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeMarkBookmarks = 0
+let g:NERDTreeShowBookmarks = 1
+let g:NERDTreeMinimalUI = 1
 
 " General 
 nnoremap <silent> <C-r> :so ~/.config/nvim/init.vim <CR>
+nnoremap <silent> <C-h> :bprevious <CR>
+nnoremap <silent> <C-l> :bnext <CR>
+
+let mapleader = ","
+
+" Airline
+let g:airline#extentions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extentions#tabline#show_buffers = 1
+let g:airline_theme = 'minimalist'
+
+set hidden
 set number
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
-" Tabs
-nnoremap <silent> <C-n> :tabe <CR>
-nnoremap <silent> <C-j> gT
-nnoremap <silent> <C-k> gt
-nnoremap <silent> <C-z> :tabclose 
-
-" Pane navigation
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
-
 nnoremap <silent> <C-i> 3<C-y>
 nnoremap <silent> <C-m> 3<C-d>
+
+" NerdCommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
 
 set clipboard=unnamedplus
 
@@ -34,11 +49,10 @@ set background=dark
 
 call plug#begin()
 
-"Plug 'pangloss/vim-javascript'
-Plug 'altercation/vim-colors-solarized'
-"Plug 'posva/vim-vue'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ziglang/zig.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
