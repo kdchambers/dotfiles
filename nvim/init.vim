@@ -1,3 +1,5 @@
+" Stored in dotfiles repository 
+
 :inoremap jk <ESC>
 
 nnoremap <silent> <C-o> :NERDTreeToggle . <CR>

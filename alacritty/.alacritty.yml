@@ -1,0 +1,14 @@
+font:
+  normal:
+    family: hack 
+    style: Regular
+
+  bold:
+    family: hack 
+    style: Regular 
+
+  italic:
+    family: hack 
+    style: Italic
+
+background_opacity: 0.8
