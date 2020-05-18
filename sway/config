@@ -1,14 +1,7 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
-### Variables
-#
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-# Home row direction keys, like vim
+
+# Use vim keys for navigation
 set $left h
 set $down j
 set $up k
@@ -17,6 +10,7 @@ set $right l
 set $term alacritty
 set $menu bemenu-run
 
+
 set $monitor_top HDMI-A-1
 set $monitor_bottom eDP-1
 
@@ -24,6 +18,7 @@ input * {
   xkb_layout "gb"
 }
 
+# Symlink wallpaper.img to desired image
 output * bg /home/keith/wallpaper.img fill
 
 output HDMI-A-1 resolution 1920x1080 position 0,0
@@ -33,11 +28,13 @@ output eDP-1 resolution 1366x768 position 0,1080
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
+
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -53,7 +50,7 @@ output eDP-1 resolution 1366x768 position 0,1080
     # Start your launcher
     bindsym $mod+d exec $menu
 
-    bindsym $mod+o exec 'echo -e "Music\nDevelopment\nBrowser" | bemenu'
+    # bindsym $mod+o exec 'echo -e "Music\nDevelopment\nBrowser" | bemenu'
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -72,7 +69,7 @@ output eDP-1 resolution 1366x768 position 0,1080
 #
 
     # Toggle between windows in workspace
-    bindsym $mod+p focus next
+    # bindsym $mod+p focus next
 
     # Move the focused window
     bindsym $mod+Shift+$left move left
@@ -149,18 +146,25 @@ output eDP-1 resolution 1366x768 position 0,1080
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+  bindsym Ctrl+i mode "navigation"
+
+mode "navigation" {
+  bindsym $right workspace next
+  bindsym $left workspace prev
+
+  # bindsym $mod+p focus next
+  bindsym Ctrl+$left focus left
+  bindsym Ctrl+$right focus right
+  bindsym Ctrl+$down focus down
+  bindsym Ctrl+up focus up
+
+  bindsym Ctrl+i mode "default"
+}
+
 #
 # Resizing containers:
 #

@@ -11,12 +11,18 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeMarkBookmarks = 0
 let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeMinimalUI = 1
+let g:NERDTreeMinimalUI = 0
 
 " General 
-nnoremap <silent> <C-r> :so ~/.config/nvim/init.vim <CR>
+nnoremap <silent> <C-R> :so ~/.config/nvim/init.vim <CR>
 nnoremap <silent> <C-h> :bprevious <CR>
 nnoremap <silent> <C-l> :bnext <CR>
+
+" Zig/Zgl specific commands
+nnoremap <silent> <C-b> :!zig build <CR>
+nnoremap <silent> <C-r> :zgl <CR>
+
+set guifont=hack:h20
 
 let mapleader = ","
 
