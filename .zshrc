@@ -7,11 +7,7 @@ export XDG_CONFIG_HOME=/home/keith/.config
 
 export PATH=$PATH:/home/keith/.local/bin
 
-ZSH_THEME="random"
-
-# Favourite themes
-# af-magic
-
+ZSH_THEME="random" # Favourite themes af-magic 
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
@@ -43,7 +39,7 @@ ZSH_THEME="random"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
@@ -65,7 +61,13 @@ ZSH_THEME="random"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent)
+plugins=(git ssh-agent fossil fzf)
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities github_id_rsa
+zstyle :omz:plugins:ssh-agent lifetime 12h
+
+export FZF_BASE='~/.fzf'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,25 +75,22 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias xi=xbps-install
 alias xr=xbps-remove
 alias xq=xbps-query
-# Needed to use sudo with alias'
-alias sudo='sudo '
+
+alias sudo='echo "Sudo disabled. Use doas"'
+alias doas='doas '
 alias ls='ls -a --color=tty'
 alias kb='kanban'
+alias szsh='source ~/.zshrc'
 
 alias gs='git status'
 alias gd='git diff'
 alias gc='git clone'
+
+alias rc='rclone'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
