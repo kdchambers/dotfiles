@@ -87,7 +87,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
     bindsym $mod+1 workspace 1:music 
     bindsym $mod+2 workspace 2:devel 
     bindsym $mod+3 workspace 3:config 
-    bindsym $mod+4 workspace 4:
+    bindsym $mod+4 workspace 4:irc
     bindsym $mod+5 workspace 5:
     bindsym $mod+6 workspace 6:browser
     bindsym $mod+7 workspace 7:
@@ -101,6 +101,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
     exec swaymsg 'workspace 1:music; exec "alacritty -e /bin/cmus"'
     exec swaymsg 'workspace 2:devel; exec "alacritty"'
     exec swaymsg 'workspace 3:config; exec "alacritty"'
+    exec swaymsg 'workspace 4:irc; exec "weechat"'
 
     # exec swaymsg 'workspace 6:browser; exec epiphany'
 
@@ -108,7 +109,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
     bindsym $mod+Shift+1 move container to workspace 1:music
     bindsym $mod+Shift+2 move container to workspace 2:devel
     bindsym $mod+Shift+3 move container to workspace 3:config
-    bindsym $mod+Shift+4 move container to workspace 4:
+    bindsym $mod+Shift+4 move container to workspace 4:irc
     bindsym $mod+Shift+5 move container to workspace 5
     bindsym $mod+Shift+6 move container to workspace 6:browser
     bindsym $mod+Shift+7 move container to workspace 7
