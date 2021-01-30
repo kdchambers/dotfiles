@@ -18,9 +18,40 @@ nnoremap <silent> <C-R> :so ~/.config/nvim/init.vim <CR>
 nnoremap <silent> <C-h> :bprevious <CR>
 nnoremap <silent> <C-l> :bnext <CR>
 
+nnoremap <C-d> "_d
+xnoremap <C-d> "_d
+
 " Zig/Zgl specific commands
 nnoremap <silent> <C-b> :!zig build <CR>
-nnoremap <silent> <C-r> :zgl <CR>
+" nnoremap <silent> <C-r> :zgl <CR>
+
+let g:tagbar_type_zig = {
+	\ 'ctagstype' : 'zig',
+	\ 'kinds'     : [
+		\ 's:structs',
+		\ 'u:unions',
+		\ 'e:enums',
+		\ 'v:variables',
+		\ 'm:members',
+        \ 'f:functions',
+        \ 'r:errors'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 'e' : 'enum',
+		\ 'u' : 'union',
+		\ 's' : 'struct',
+        \ 'r' : 'error'
+	\ },
+	\ 'scope2kind' : {
+		\ 'enum' : 'e',
+		\ 'union' : 'u',
+		\ 'struct' : 's',
+		\ 'error' : 'r'
+	\ },
+	\ 'ctagsbin'  : '~/ztags/zig-cache/ztags',
+	\ 'ctagsargs' : ''
+\ }
 
 set guifont=hack:h20
 

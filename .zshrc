@@ -3,8 +3,14 @@ export ZSH="/home/keith/.oh-my-zsh"
 export LANG=en_IE.UTF-8
 export LC_CTYPE=en_IE.UTF-8
 export LC_ALL=en_IE.UTF-8
+export XDG_CONFIG_HOME=/home/keith/.config
+
+export PATH=$PATH:/home/keith/.local/bin
 
 ZSH_THEME="random"
+
+# Favourite themes
+# af-magic
 
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -81,6 +87,11 @@ export EDITOR='nvim'
 alias xi=xbps-install
 alias xr=xbps-remove
 alias xq=xbps-query
-# alias sudo='sudo '
+# Needed to use sudo with alias'
+alias sudo='sudo '
 alias ls='ls -a --color=tty'
 alias kb='kanban'
+
+alias gs='git status'
+alias gd='git diff'
+alias gc='git clone'

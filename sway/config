@@ -104,9 +104,9 @@ exec swayidle -w \
     # Startup layout
     exec swaymsg 'workspace 1:music; exec "alacritty -e /bin/cmus"'
     exec swaymsg 'workspace 2:devel; exec "alacritty"'
-    exec swaymsg 'workspace 3:config; exec "alacritty -e nvim /home/keith/.config/sway/config"'
+    exec swaymsg 'workspace 3:config; exec "alacritty"'
 
-    exec swaymsg 'workspace 6:browser; exec epiphany'
+    # exec swaymsg 'workspace 6:browser; exec epiphany'
 
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace 1
