@@ -1,0 +1,8 @@
+{
+  "languageserver": {
+    "zls": {
+      "command": "/home/keith/zls/zig-cache/bin/zls",
+      "filetypes": ["zig"]
+    }
+  }
+}
