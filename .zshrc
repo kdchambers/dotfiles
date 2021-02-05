@@ -5,6 +5,9 @@ export LC_CTYPE=en_IE.UTF-8
 export LC_ALL=en_IE.UTF-8
 export XDG_CONFIG_HOME=/home/keith/.config
 
+export KANBANFILE=~/.config/kanban/.kanban.csv
+export KANBANCONF=~/.config/kanban/.kanban.conf
+
 export PATH=$PATH:/home/keith/.local/bin
 
 ZSH_THEME="random" # Favourite themes af-magic 
@@ -39,7 +42,7 @@ ZSH_THEME="random" # Favourite themes af-magic
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="false"
 
 # Uncomment the following line if you want to disable marking untracked files under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
@@ -92,5 +95,13 @@ alias gd='git diff'
 alias gc='git clone'
 
 alias rc='rclone'
+alias pm='podman'
+alias nn='nvim'
+alias rr='zig build run'
+alias rb='zig build'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source "/$HOME/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+
+

@@ -30,11 +30,11 @@ default_border pixel 1
 # Example configuration:
 #
 
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+# exec swayidle -w \
+         # timeout 300 'swaylock -f -c 000000' \
+         # timeout 600 'swaymsg "output * dpms off"' \
+              # resume 'swaymsg "output * dpms on"' \
+         # before-sleep 'swaylock -f -c 000000'
 
 # Start a terminal
 bindsym $mod+Return exec $term
@@ -65,7 +65,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 #
 
     # Toggle between windows in workspace
-    bindsym $mod+p focus next
+    bindsym $mod+i focus next
 
     # Move the focused window
     bindsym $mod+Shift+$left move left
@@ -88,7 +88,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
     bindsym $mod+2 workspace 2:devel 
     bindsym $mod+3 workspace 3:config 
     bindsym $mod+4 workspace 4:irc
-    bindsym $mod+5 workspace 5:
+    bindsym $mod+5 workspace 5:newsboat
     bindsym $mod+6 workspace 6:browser
     bindsym $mod+7 workspace 7:
     bindsym $mod+8 workspace 8:
@@ -101,7 +101,8 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
     exec swaymsg 'workspace 1:music; exec "alacritty -e /bin/cmus"'
     exec swaymsg 'workspace 2:devel; exec "alacritty"'
     exec swaymsg 'workspace 3:config; exec "alacritty"'
-    exec swaymsg 'workspace 4:irc; exec "weechat"'
+    exec swaymsg 'workspace 4:irc; exec "alacritty -e weechat"'
+    exec swaymsg 'workspace 5:newsboat; exec "alacritty -e newsboat"'
 
     # exec swaymsg 'workspace 6:browser; exec epiphany'
 
@@ -110,7 +111,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
     bindsym $mod+Shift+2 move container to workspace 2:devel
     bindsym $mod+Shift+3 move container to workspace 3:config
     bindsym $mod+Shift+4 move container to workspace 4:irc
-    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+5 move container to workspace 5:newsboat
     bindsym $mod+Shift+6 move container to workspace 6:browser
     bindsym $mod+Shift+7 move container to workspace 7
     bindsym $mod+Shift+8 move container to workspace 8
@@ -159,6 +160,8 @@ mode "navigation" {
   bindsym Ctrl+up focus up
 
   bindsym Ctrl+i mode "default"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 #

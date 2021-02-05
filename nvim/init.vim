@@ -72,6 +72,14 @@ set expandtab
 nnoremap <silent> <C-i> 3<C-y>
 nnoremap <silent> <C-m> 3<C-d>
 
+" zls 
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ "\<TAB>"
+  
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 " NerdCommenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -91,5 +99,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'ziglang/zig.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
