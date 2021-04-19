@@ -10,6 +10,11 @@ HISTSIZE=1000
 SAVEHIST=1000
 setopt autocd beep
 bindkey -v
+
+bindkey "^N" down-line-or-search
+bindkey "^P" up-line-or-search
+
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/keith/.zshrc'
@@ -28,6 +33,8 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export XDG_CONFIG_HOME=/home/keith/.config
+
+export PATH=$PATH:/home/keith/.local/bin
 
 export KANBANFILE=~/.config/kanban/.kanban.csv
 export KANBANCONF=~/.config/kanban/.kanban.conf

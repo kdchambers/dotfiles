@@ -6,7 +6,7 @@
 
 " bd - close current buffer
 
-nnoremap <silent> <C-o> :NERDTreeToggle . <CR>
+" nnoremap <silent> <C-o> :NERDTreeToggle . <CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeMarkBookmarks = 0
@@ -14,44 +14,21 @@ let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeMinimalUI = 0
 
 " General 
-nnoremap <silent> <C-R> :so ~/.config/nvim/init.vim <CR>
+nnoremap <silent> <C-r> :so ~/.config/nvim/init.vim <CR>
 nnoremap <silent> <C-h> :bprevious <CR>
 nnoremap <silent> <C-l> :bnext <CR>
 
 nnoremap <C-d> "_d
 xnoremap <C-d> "_d
 
-" Zig/Zgl specific commands
-nnoremap <silent> <C-b> :!zig build <CR>
-" nnoremap <silent> <C-r> :zgl <CR>
+" Jump location forward / backwards
+nnoremap <S-i> <C-i>
+nnoremap <S-o> <C-o>
 
-let g:tagbar_type_zig = {
-	\ 'ctagstype' : 'zig',
-	\ 'kinds'     : [
-		\ 's:structs',
-		\ 'u:unions',
-		\ 'e:enums',
-		\ 'v:variables',
-		\ 'm:members',
-        \ 'f:functions',
-        \ 'r:errors'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 'e' : 'enum',
-		\ 'u' : 'union',
-		\ 's' : 'struct',
-        \ 'r' : 'error'
-	\ },
-	\ 'scope2kind' : {
-		\ 'enum' : 'e',
-		\ 'union' : 'u',
-		\ 'struct' : 's',
-		\ 'error' : 'r'
-	\ },
-	\ 'ctagsbin'  : '~/ztags/zig-cache/ztags',
-	\ 'ctagsargs' : ''
-\ }
+" Enter / Tab for scrolling
+nnoremap <silent> <C-i> 3<C-y>
+nnoremap <silent> <C-m> 3<C-d>
+nnoremap <silent> <space> 3<C-d>
 
 set guifont=hack:h20
 
@@ -68,9 +45,39 @@ set number
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set updatetime=300
 
-nnoremap <silent> <C-i> 3<C-y>
-nnoremap <silent> <C-m> 3<C-d>
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " zls 
 
@@ -88,7 +95,6 @@ set clipboard=unnamedplus
 
 syntax enable
 set background=dark
-" colorscheme solarized
 
 :command! Opconfig tabe | e ~/.config/nvim/init.vim
 
