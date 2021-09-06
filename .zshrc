@@ -11,9 +11,6 @@ SAVEHIST=1000
 setopt autocd beep
 bindkey -v
 
-# Start ssh-agent & load environment variables
-eval `ssh-agent -s`
-
 bindkey "^N" down-line-or-search
 bindkey "^P" up-line-or-search
 

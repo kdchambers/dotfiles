@@ -8,5 +8,8 @@ export LC_CTYPE=en_IE.UTF-8
 export LC_ALL=en_IE.UTF-8
 export XDG_CONFIG_HOME=/home/keith
 
-wifish connect "ZyXEL_AA51"
+# Start ssh-agent & load environment variables
+eval `ssh-agent -s`
+
+wifish connect "ARRIS-5E6F"
 
