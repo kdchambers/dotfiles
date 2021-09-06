@@ -36,9 +36,6 @@ export XDG_CONFIG_HOME=/home/keith/.config
 
 export PATH=$PATH:/home/keith/.local/bin
 
-export KANBANFILE=~/.config/kanban/.kanban.csv
-export KANBANCONF=~/.config/kanban/.kanban.conf
-
 export EDITOR='nvim'
 export FZF_BASE='~/.fzf'
 
@@ -48,12 +45,12 @@ alias xq='xbps-query'
 
 alias doas='doas '
 alias ls='ls -a --color=tty'
-alias kb='kanban'
 alias vc='veracrypt -t'
 
 alias gs='git status'
 alias gd='git diff'
 alias gc='git clone'
+alias ga='git add'
 
 alias rc='rclone'
 alias nn='nvim'
