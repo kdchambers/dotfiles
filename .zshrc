@@ -58,7 +58,5 @@ alias gc='git clone'
 alias rc='rclone'
 alias nn='nvim'
 alias nf='nvim $(fzf)'
-alias rr='zig build run'
-alias rb='zig build'
 
 cd() { builtin cd "$@" && ls; };

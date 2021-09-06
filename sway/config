@@ -25,17 +25,6 @@ output eDP-1 resolution 1366x768 position 0,1080
 
 default_border pixel 1 
 
-### Idle configuration
-#
-# Example configuration:
-#
-
-# exec swayidle -w \
-         # timeout 300 'swaylock -f -c 000000' \
-         # timeout 600 'swaymsg "output * dpms off"' \
-              # resume 'swaymsg "output * dpms on"' \
-         # before-sleep 'swaylock -f -c 000000'
-
 # Start a terminal
 bindsym $mod+Return exec $term
 
@@ -48,8 +37,8 @@ bindsym $mod+d exec $menu
 ## General Shortcuts
 
 # cmus
-bindsym Ctrl+p exec cmus-remote -r # Previous 
-bindsym Ctrl+n exec cmus-remote -n # Next
+bindsym Ctrl+bracketleft exec cmus-remote -r # Previous 
+bindsym Ctrl+bracketright exec cmus-remote -n # Next
 bindsym Ctrl+Space exec cmus-remote -u # Toggle Pause
 
 # Drag floating windows by holding down $mod and left mouse button.
@@ -82,19 +71,19 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 # Workspaces:
 #
 
-    workspace 1:music output $monitor_top
-    workspace 2:devel output $monitor_top
-    workspace 3:config output $monitor_top
+    workspace 1:news output $monitor_top
+    workspace 2:sysmon output $monitor_top
+    workspace 3:music output $monitor_top
 
-    workspace 6:browser output $monitor_bottom
+    workspace 9:browser output $monitor_bottom
 
     # Switch to workspace
-    bindsym $mod+1 workspace 1:music 
-    bindsym $mod+2 workspace 2:devel 
-    bindsym $mod+3 workspace 3:config 
-    bindsym $mod+4 workspace 4:irc
-    bindsym $mod+5 workspace 5:newsboat
-    bindsym $mod+6 workspace 6:sysmon
+    bindsym $mod+1 workspace 1:news
+    bindsym $mod+2 workspace 2:sysmon 
+    bindsym $mod+3 workspace 3:music 
+    bindsym $mod+4 workspace 4:
+    bindsym $mod+5 workspace 5:
+    bindsym $mod+6 workspace 6:
     bindsym $mod+7 workspace 7:
     bindsym $mod+8 workspace 8:
     bindsym $mod+9 workspace 9:browser
@@ -103,23 +92,19 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
     bindsym $mod+$left workspace prev
 
     # Startup layout
-    exec swaymsg 'workspace 1:music; exec "alacritty -e /bin/cmus"'
-    exec swaymsg 'workspace 2:devel; exec "alacritty"'
-    exec swaymsg 'workspace 3:config; exec "alacritty"'
-    exec swaymsg 'workspace 4:irc; exec "alacritty -e weechat"'
-    exec swaymsg 'workspace 5:newsboat; exec "alacritty -e newsboat"'
-
-    exec swaymsg 'workspace 6:sysmon; exec bpytop'
+    exec swaymsg 'workspace 1:news; exec "alacritty -e weechat"; exec "alacritty -e newsboat"'
+    exec swaymsg 'workspace 2:sysmon; exec "alacritty -e bpytop"'
+    exec swaymsg 'workspace 3:music; exec "alacritty -e /bin/cmus"'
 
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1:music
-    bindsym $mod+Shift+2 move container to workspace 2:devel
-    bindsym $mod+Shift+3 move container to workspace 3:config
-    bindsym $mod+Shift+4 move container to workspace 4:irc
-    bindsym $mod+Shift+5 move container to workspace 5:newsboat
-    bindsym $mod+Shift+6 move container to workspace 6:sysmon
-    bindsym $mod+Shift+7 move container to workspace 7
-    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+1 move container to workspace 1:news
+    bindsym $mod+Shift+2 move container to workspace 2:sysmon
+    bindsym $mod+Shift+3 move container to workspace 3:music
+    bindsym $mod+Shift+4 move container to workspace 4:
+    bindsym $mod+Shift+5 move container to workspace 5:
+    bindsym $mod+Shift+6 move container to workspace 6:
+    bindsym $mod+Shift+7 move container to workspace 7:
+    bindsym $mod+Shift+8 move container to workspace 8:
     bindsym $mod+Shift+9 move container to workspace 9:browser
     bindsym $mod+Shift+0 move container to workspace 10
 
