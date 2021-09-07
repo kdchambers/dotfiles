@@ -8,6 +8,11 @@ export LC_CTYPE=en_IE.UTF-8
 export LC_ALL=en_IE.UTF-8
 export XDG_CONFIG_HOME=/home/keith
 
+# Set starting wallpaper to a random image from current desktop images folder
+ln -fs $(ls ~/desktop/2021/September/*.jpg | shuf -n 1) /home/keith/wallpaper.img
+
+alias ap='SDL_AUDIODRIVER="alsa" ffplay -nodisp -nostats -hide_banner'
+
 # Start ssh-agent & load environment variables
 eval `ssh-agent -s`
 

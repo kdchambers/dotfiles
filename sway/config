@@ -17,6 +17,8 @@ input * {
   xkb_layout "gb"
 }
 
+font pango:SourceCodePro Medium 10
+
 # Symlink wallpaper.img to desired image
 output * bg /home/keith/wallpaper.img fill
 
@@ -71,42 +73,70 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 # Workspaces:
 #
 
-    workspace 1:news output $monitor_top
-    workspace 2:sysmon output $monitor_top
-    workspace 3:music output $monitor_top
 
-    workspace 9:browser output $monitor_bottom
+    # NOTE: Relies on the strip_workspace_numbers 
+    #       option in sway-bar to strip number prefix
+
+    set $ws1 1:sysmon
+    set $ws2 2:◫
+    set $ws3 3:♫
+    set $ws4 4:🌐
+    set $ws5 5:
+    set $ws6 6:Ⅰ
+    set $ws7 7:Ⅱ
+    set $ws8 8:Ⅲ
+    set $ws9 9:Ⅳ
+
+    # Binds workspace to monitor
+    workspace $ws1 output $monitor_bottom
+    workspace $ws2 output $monitor_top
+    workspace $ws3 output $monitor_top
+    workspace $ws4 output $monitor_top
+    workspace $ws5 output $monitor_top
+    workspace $ws6 output $monitor_top
+    workspace $ws7 output $monitor_top
+    workspace $ws8 output $monitor_top
+    workspace $ws9 output $monitor_top
+
+    set $switch_wallpaper_cmd output $monitor_top bg $(ls ~/desktop/2021/September/*.jpg | shuf -n 1) fill 
+
+    bindsym $mod+Shift+p $switch_wallpaper_cmd
 
     # Switch to workspace
-    bindsym $mod+1 workspace 1:news
-    bindsym $mod+2 workspace 2:sysmon 
-    bindsym $mod+3 workspace 3:music 
-    bindsym $mod+4 workspace 4:
-    bindsym $mod+5 workspace 5:
-    bindsym $mod+6 workspace 6:
-    bindsym $mod+7 workspace 7:
-    bindsym $mod+8 workspace 8:
-    bindsym $mod+9 workspace 9:browser
-    bindsym $mod+0 workspace 10:
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
+
     bindsym $mod+$right workspace next
     bindsym $mod+$left workspace prev
 
     # Startup layout
-    exec swaymsg 'workspace 1:news; exec "alacritty -e weechat"; exec "alacritty -e newsboat"'
-    exec swaymsg 'workspace 2:sysmon; exec "alacritty -e bpytop"'
-    exec swaymsg 'workspace 3:music; exec "alacritty -e /bin/cmus"'
+    exec swaymsg 'workspace $ws1; exec "alacritty -e bpytop"'
+    exec swaymsg 'workspace $ws2; exec "alacritty -e newsboat"'
+    exec swaymsg 'workspace $ws3; exec "alacritty -e /bin/cmus"'
+    exec swaymsg 'workspace $ws4; exec "chromium"'
+    exec swaymsg 'workspace $ws5; exec "alacritty"'
+    exec swaymsg 'workspace $ws6; exec "alacritty"'
+    exec swaymsg 'workspace $ws7; exec "alacritty"'
+    exec swaymsg 'workspace $ws8; exec "alacritty"'
+    exec swaymsg 'workspace $ws9; exec "alacritty"'
 
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1:news
-    bindsym $mod+Shift+2 move container to workspace 2:sysmon
-    bindsym $mod+Shift+3 move container to workspace 3:music
-    bindsym $mod+Shift+4 move container to workspace 4:
-    bindsym $mod+Shift+5 move container to workspace 5:
-    bindsym $mod+Shift+6 move container to workspace 6:
-    bindsym $mod+Shift+7 move container to workspace 7:
-    bindsym $mod+Shift+8 move container to workspace 8:
-    bindsym $mod+Shift+9 move container to workspace 9:browser
-    bindsym $mod+Shift+0 move container to workspace 10
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
 
 #
 # Layout stuff:
@@ -184,7 +214,12 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    position bottom 
+
+    font SourceCodePro Regular 10
+    output $monitor_top
+    strip_workspace_numbers yes
+    workspace_min_width 25
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
