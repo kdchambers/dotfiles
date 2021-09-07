@@ -14,6 +14,11 @@ bindkey -v
 bindkey "^N" down-line-or-search
 bindkey "^P" up-line-or-search
 
+# Fix awful coloring of mounted ntfs (Happens due to permissions being too permissive)
+LS_COLORS='ow=36'
+
+# Start ssh-agent, needs to happen at beginning of shell creation as env vars are loaded
+eval `ssh-agent -s`
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
