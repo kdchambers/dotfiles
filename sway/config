@@ -17,13 +17,16 @@ input * {
   xkb_layout "gb"
 }
 
-font pango:SourceCodePro Medium 10
+font pango:Noto Sans Medium 10
 
 # Symlink wallpaper.img to desired image
 output * bg /home/keith/wallpaper.img fill
 
 output HDMI-A-1 resolution 1920x1080 position 0,0
 output eDP-1 resolution 1366x768 position 0,1080
+
+# Rotate external monitor
+# output HDMI-A-1 transform "270"  
 
 default_border pixel 1 
 
@@ -35,6 +38,9 @@ bindsym $mod+Shift+q kill
 
 # Start your launcher
 bindsym $mod+d exec $menu
+
+# gaps outer 2
+# gaps inner 5
 
 ## General Shortcuts
 
@@ -117,7 +123,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
     bindsym $mod+$left workspace prev
 
     # Startup layout
-    exec swaymsg 'workspace $ws1; exec "alacritty -e bpytop"'
+    exec swaymsg 'workspace $ws1; exec "alacritty -e btop"'
     exec swaymsg 'workspace $ws2; exec "alacritty -e newsboat"'
     exec swaymsg 'workspace $ws3; exec "alacritty -e /bin/cmus"'
     exec swaymsg 'workspace $ws4; exec "chromium"'
@@ -217,7 +223,7 @@ bar {
     position bottom 
 
     font SourceCodePro Regular 10
-    output $monitor_top
+    # output $monitor_top
     strip_workspace_numbers yes
     workspace_min_width 25
 
